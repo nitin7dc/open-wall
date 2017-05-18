@@ -1,0 +1,16 @@
+.parent-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+  flex-direction: row;
+  flex-wrap: wrap;
+  width:100%;
+  max-width: 1000px;
+  flex-grow: 1;
+  align-items: flex-start;
+  padding:16px;
+}

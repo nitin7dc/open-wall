@@ -1,0 +1,35 @@
+form {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 24px;
+    padding: 4px;
+    border: 2px solid white;
+    border-radius: 4px;
+    background: transparent;
+    color:white;
+}
+
+input {
+    flex-grow: 1;
+    outline: none;
+    border : none;
+    color:white;
+    background: transparent;
+}
+
+input:focus {
+    outline: none;
+}
+
+.my-icon{
+  width: 24px;
+  height: 24px;
+}
+
+
+@media (max-width: 500px) {
+  form{
+    margin:8px;
+    min-width: 180px;
+  }
+}

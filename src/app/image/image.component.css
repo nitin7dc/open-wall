@@ -1,0 +1,67 @@
+img{
+  width: 100%;
+  height:auto;
+}
+
+.back-icon, .download-icon, .close-icon{
+  background: #FE665C;
+  border:1px solid white;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+  border-radius:50%;
+  width: 34px !important;
+  height: 34px !important;
+  padding:2px;
+}
+
+.back-icon{
+  position: fixed;
+  bottom:10px;
+  left:10px;
+}
+
+.download-icon{
+  position: fixed;
+  bottom:10px;
+  right:60px;
+}
+
+
+.close-icon{
+  position: fixed;
+  bottom:10px;
+  right:10px;
+}
+
+.image-owner{
+  position: fixed;
+  bottom:10px;
+  left:10px;
+  flex-direction: row;
+}
+
+.info{
+  padding:4px 8px;
+  margin-left: 50px;
+  position: relative;
+  flex-direction: column;
+  background: #FE665C;
+  color:white;
+  font-size: small;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius:4px;
+  max-width: 112px;
+  max-height: 38px;
+  overflow:hidden;
+}
+
+a{
+  color: white;
+  outline:none;
+}
+
+a:hover, a:focus{
+  color: #e0e0e0;
+  outline:none;
+}

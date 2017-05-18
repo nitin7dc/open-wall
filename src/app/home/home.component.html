@@ -1,0 +1,16 @@
+<div class="grid-container">
+  <div id="photos"
+       infiniteScroll
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="300"
+       (scrolled)="more()">
+    <img *ngFor="let image of images" [src]="image.urls.small" (click)="fullImage(image)"/>
+  </div>
+
+  <div class="loader" [hidden]="!loading">
+    <div class="loader_figure"></div>
+    <p class="loader_label">loading</p>
+  </div>
+
+  <p class="message" [hidden]="!errorMessage">{{errorMessage}}</p>
+</div>

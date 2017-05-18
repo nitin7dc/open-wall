@@ -1,0 +1,13 @@
+<div class="header-container" *ngIf="!hideHeader === true">
+  <div class="header-body">
+    <h1 [routerLink]="''"> open-wall</h1>
+    <app-search></app-search>
+    <img class="my-icon menu-icon" [ngClass]="{'menu-activated' : !hideMenu}" src="assets/apps.svg" (click)="show($event)" />
+
+    <ul class="menu" [hidden]="hideMenu" (appClickOutside)="close($event)">
+      <li (click)="go('about')">About</li>
+      <li (click)="go('github')">Github</li>
+      <!--<li (click)="go('privacy')">Privacy</li>-->
+    </ul>
+  </div>
+</div>

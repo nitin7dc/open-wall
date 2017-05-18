@@ -1,0 +1,19 @@
+<div class="loader loader_home" [hidden]="!loading">
+  <div class="loader_figure"></div>
+  <p class="loader_label">loading</p>
+</div>
+
+<p class="message" [hidden]="!errorMessage">{{errorMessage}}</p>
+<img [src]="url || ''"/>
+<div>
+  <!--<img src="assets/back.svg" class="my-icon back-icon" (click)="back()">-->
+  <div class="image-owner">
+    <img [src]="image.user.profile_image.small" class="my-icon back-icon">
+    <div class="info">
+      <div><a [href]="image.user.links.html + utm" target="_blank" class="user-name">{{image.user.name}}</a></div>
+      <div><a [href]="image.links.html + utm" target="_blank" class="user-name">unsplash</a></div>
+    </div>
+  </div>
+  <img src="assets/download.svg" class="my-icon download-icon" (click)="download()" *ngIf="!errorMessage.length">
+  <img src="assets/close.svg" class="my-icon close-icon" (click)="close()">
+</div>
