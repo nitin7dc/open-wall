@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
   go(path) {
     this.hideMenu = true;
     if (path === 'github') {
-      window.open('https://github.com', '_blank');
+      window.open('https://github.com/nitin7dc/open-wall', '_blank');
     } else {
       this.router.navigateByUrl(path);
     }

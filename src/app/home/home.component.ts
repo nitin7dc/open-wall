@@ -16,9 +16,11 @@ export class HomeComponent implements OnInit {
   loading = true;
   errorMessage = '';
   searchEvent: any;
+  searchQuery = '';
+  page = 0;
   total = 0;
   total_pages = 0;
-  timeout = false;
+  searchActive = false;
 
   constructor(private imageService: ImagesService, private router: Router) {
   }
@@ -29,10 +31,12 @@ export class HomeComponent implements OnInit {
   }
 
   random() {
+    this.loading = true;
+    this.page += 1;
     this.errorMessage = '';
-    this.imageService.random()
+    this.imageService.random(this.page)
       .subscribe(images => {
-        this.images = images;
+        images.forEach(image => this.images.push(image));
         this.loading = false;
         this.errorMessage = '';
       }, error => {
@@ -45,43 +49,56 @@ export class HomeComponent implements OnInit {
     this.errorMessage = '';
     this.searchEvent = this.imageService.getSearchEvent()
       .subscribe(value => {
-        if (value.hasOwnProperty('init')) {
-          this.loading = true;
+        this.searchActive = true;
+        if (value.hasOwnProperty('loading') && (value.page === 0)) {
+
           this.images = [];
-          this.errorMessage = '';
+          this.page = 0;
+          this.searchQuery = value.query;
+          this.loading = true;
+
+        } else if (value.hasOwnProperty('loading')) {
+
+          this.loading = true;
+
         } else if (value.hasOwnProperty('errorMessage')) {
-          this.loading = false;
+
           this.errorMessage = value.errorMessage;
-          this.timeout = true;
+          this.loading = false;
+
         } else if (value.hasOwnProperty('results')) {
+
           this.loading = false;
           this.total = value.total;
           this.total_pages = value.total_pages;
-          this.images = value.results;
-          this.errorMessage = '';
+          value.results.forEach(image => this.images.push(image));
+          this.page += 1;
+
         } else {
-          this.loading = false;
-          this.random();
+
+          this.searchActive = false;
           this.errorMessage = '';
+          this.page = 0;
+          this.searchQuery = '';
+          this.images = [];
+          this.random();
+
         }
       }, error => {
+
         this.loading = false;
         this.errorMessage = error;
+
       });
   }
 
+
   more() {
-    this.errorMessage = '';
-    this.loading = true;
-    this.imageService.more()
-      .subscribe(images => {
-        this.images = this.images.concat(images);
-        this.loading = false;
-        this.errorMessage = '';
-      }, error => {
-        this.loading = false;
-        this.errorMessage = error;
-      });
+    if (this.searchActive) {
+      this.imageService.search(this.searchQuery, this.page);
+    } else {
+      this.random();
+    }
   }
 
   fullImage(image) {
