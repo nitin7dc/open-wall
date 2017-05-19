@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   total = 0;
   total_pages = 0;
   searchActive = false;
+  imageBox = [];
 
   constructor(private imageService: ImagesService, private router: Router) {
   }
@@ -36,7 +37,7 @@ export class HomeComponent implements OnInit {
     this.errorMessage = '';
     this.imageService.random(this.page)
       .subscribe(images => {
-        images.forEach(image => this.images.push(image));
+        this.imageBox.push(images);
         this.loading = false;
         this.errorMessage = '';
       }, error => {
@@ -52,7 +53,7 @@ export class HomeComponent implements OnInit {
         this.searchActive = true;
         if (value.hasOwnProperty('loading') && (value.page === 0)) {
 
-          this.images = [];
+          this.imageBox = [];
           this.page = 0;
           this.searchQuery = value.query;
           this.loading = true;
@@ -71,7 +72,7 @@ export class HomeComponent implements OnInit {
           this.loading = false;
           this.total = value.total;
           this.total_pages = value.total_pages;
-          value.results.forEach(image => this.images.push(image));
+          this.imageBox.push(value.results);
           this.page += 1;
 
         } else {
@@ -80,7 +81,7 @@ export class HomeComponent implements OnInit {
           this.errorMessage = '';
           this.page = 0;
           this.searchQuery = '';
-          this.images = [];
+          this.imageBox = [];
           this.random();
 
         }

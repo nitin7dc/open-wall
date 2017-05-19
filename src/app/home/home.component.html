@@ -1,15 +1,25 @@
-<div class="grid-container">
-  <div id="photos"
-       infiniteScroll
-       [infiniteScrollDistance]="2"
-       [infiniteScrollThrottle]="300"
-       (scrolled)="more()">
-    <img *ngFor="let image of images" [src]="image.urls.small" (click)="fullImage(image)"/>
+<div class="image-container"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="300"
+     (scrolled)="more()">
+
+  <p class="border">
+    all images are free and licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank">creative commons zero</a>
+    and code of this app is available on <a href="https://www.github.com/nitin7dc/open-wall" target="_blank">github repository</a>.
+  </p>
+
+  <div class="page"
+       *ngFor="let images of imageBox">
+    <img *ngFor="let image of images"
+         [src]="image.urls.small"
+         (click)="fullImage(image)"
+         class="border"/>
   </div>
 
   <div class="loader" [hidden]="!loading">
     <div class="loader_figure"></div>
-    <p class="loader_label">loading</p>
+    <span class="loader_label">loading</span>
   </div>
 
   <p class="message" [hidden]="!errorMessage">{{errorMessage}}</p>

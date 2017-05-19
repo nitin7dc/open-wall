@@ -32,7 +32,6 @@ export class ImageComponent implements OnInit {
     if (this.image) {
       this.url = this.image.urls.regular;
     } else {
-      // this.router.navigateByUrl('');
       this.get(id);
     }
   }

@@ -78,6 +78,10 @@ h1:hover, li:hover{
     width:75px;
 }
 
+ul{
+  z-index: 1;
+}
+
 li{
     font-size: medium;
     line-height: 14px;

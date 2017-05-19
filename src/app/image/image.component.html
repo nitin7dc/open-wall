@@ -4,14 +4,15 @@
 </div>
 
 <p class="message" [hidden]="!errorMessage">{{errorMessage}}</p>
-<img [src]="url || ''"/>
-<div>
+<img [src]="url" *ngIf="!loading"/>
+<div *ngIf="!loading">
   <!--<img src="assets/back.svg" class="my-icon back-icon" (click)="back()">-->
   <div class="image-owner">
     <img [src]="image.user.profile_image.small" class="my-icon back-icon">
     <div class="info">
+      <div style="font-size: x-small">Photo By</div>
       <div><a [href]="image.user.links.html + utm" target="_blank" class="user-name">{{image.user.name}}</a></div>
-      <div><a [href]="image.links.html + utm" target="_blank" class="user-name">unsplash</a></div>
+      <div><a [href]="image.links.html + utm" target="_blank" class="user-name">Unsplash</a></div>
     </div>
   </div>
   <img src="assets/download.svg" class="my-icon download-icon" (click)="download()" *ngIf="!errorMessage.length">
